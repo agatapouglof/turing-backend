@@ -1,0 +1,12 @@
+
+{
+  "apiPort": 4000,
+  "db" :  {
+    "username": "root",
+    "password": "",
+    "database": "turing",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port" : 3306
+  }
+}

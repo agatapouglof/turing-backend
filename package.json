@@ -1,0 +1,30 @@
+{
+  "name": "turing-api",
+  "main": "server.js",
+  "version": "0.0.1",
+  "author": "agatapouglof",
+  "license": "MIT",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "test-coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --reporter spec --recursive"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^1.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "file-stream-rotator": "0.0.7",
+    "moment": "^2.23.0",
+    "morgan": "^1.7.0",
+    "mysql2": "^1.6.4",
+    "request": "^2.88.0",
+    "sequelize": "^4.41.2",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  }
+}
