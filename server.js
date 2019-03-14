@@ -6,12 +6,12 @@ let express = require('express');
 var cors = require('cors');
 let app = express();
 var server = require('http').Server(app);
-// require('./sockets').listen(server);
 
 
 app.use(cors());
 
 let routes = require('./routes');
+app.use("/images", express.static(__dirname + "/images/product_images"));
 
 // Logging
 let bodyParser = require('body-parser');
@@ -44,8 +44,6 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 // Load up the routes
 app.use('/', routes);
-
-
 
 
 

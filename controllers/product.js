@@ -9,10 +9,39 @@ let ProductModel = require('../models/product.js');
 
 const Product = ProductModel(sequelizeConnect, Sequelize)
 
+let Product_attributeModel = require('../models/product_attribute.js');
+const Product_attribute = Product_attributeModel(sequelizeConnect, Sequelize)
+
+let AttributeModel = require('../models/attribute.js');
+const Attribute = AttributeModel(sequelizeConnect, Sequelize);
+
+let Attribute_valueModel = require('../models/attribute_value.js');
+const Attribute_value = Attribute_valueModel(sequelizeConnect, Sequelize);
+
 
 // get all products
 exports.findAll = (req, res) => {
-    Product.findAll().then(products => res.json(products))
+    // Product_attribute.hasMany(Product, {foreignKey: 'product_id'});
+    // Product_attribute.hasMany(Attribute_value, {foreignKey: 'attribute_value_id'});
+    // Product_attribute.findAll({include  : [Product,Attribute_value]}).then(products => res.json(products))
+
+
+
+    Product_attribute.hasMany(Attribute_value, {foreignKey: 'attribute_value_id'});
+    
+    Attribute_value.belongsTo(Product_attribute, {foreignKey: 'attribute_value_id'});
+
+    Product.hasMany(Product_attribute, {foreignKey: 'product_id'});
+
+    // Product.hasMany(Attribute_value, {
+    //    through :  Product_attribute,
+    //    foreignKey: 'product_id'
+    //  });
+
+    // Product.belongsToMany(Attribute_value, { through: Product_attribute, foreignKey: 'attribute_value_id' })
+    // Product.findAll({include  : [Product_attribute]}).then(products => res.json(products))
+    Product.findAll({include  : [Product_attribute]}).then(products => res.json(products))
+    // Product.findAll().then(products => res.json(products))
 };
 
 // get product by id
